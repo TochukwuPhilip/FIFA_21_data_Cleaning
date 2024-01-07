@@ -16,7 +16,7 @@ The main purpose of this approach is to eliminate the following occurrences to e
 - Handling Inconsistent Formats
 
 # Description of the FIFA 21 Dataset
-This FIFA 2021 dataset was sourced from [Kaggle]([https://pages.github.com](https://www.kaggle.com/datasets/yagunnersya/fifa-21-messy-raw-dataset-for-cleaning-exploring)https://www.kaggle.com/datasets/yagunnersya/fifa-21-messy-raw-dataset-for-cleaning-exploring/).
+This FIFA 2021 dataset was sourced from [Kaggle](https://www.kaggle.com/datasets/yagunnersya/fifa-21-messy-raw-dataset-for-cleaning-exploring/).
 The raw dataset was scraped from sofifa.com, containing 18,979 players and 77 data points on their performance. It comes with a handy guide to decipher player info. 
 The columns in the dataset includes ID, Name, Long Name, photo URL, player URL, Nationality, Age, OVA, POT, Contract, Positions, Height, Preferred Foot, BOV, Best Position, Joined, Loan Date End, Value, Wage, Release Clause, W/F, SM, A/W, D/W, IR, PAS, DRI.
 Join me as I employ Power Query to clean this data, transforming it from messy to analysis-ready, step-by-step.
