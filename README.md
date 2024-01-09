@@ -64,6 +64,24 @@ I have used the "Replace values" function to correct the irregularity.
 
 ![image](https://github.com/TochukwuPhilip/FIFA_21_data_Cleaning/assets/108484860/2802c9f8-f943-4e78-a626-70c3c0f9c85f)
 
+## Contract and Position columns
+![image](https://github.com/TochukwuPhilip/FIFA_21_data_Cleaning/assets/108484860/cffd9081-2f80-4cc3-8548-c703c9fcb498)
+
+Ontract column: Filtering the column shows that the column contains inconsistent data as follows:![image](https://github.com/TochukwuPhilip/FIFA_21_data_Cleaning/assets/108484860/9aebbb54-8bf9-4685-8384-c6bb2af2e823)
+The contract column values show three categories of data, a year range (e.g, 2020 ~ 2024), "free" and "... loan" types.
+First, I used the "replace value" function to change the "~" character to "-".
+![image](https://github.com/TochukwuPhilip/FIFA_21_data_Cleaning/assets/108484860/24e53834-1658-42fd-9e4d-31834fa1b3c6)
+
+Second, I created a conditional column to identify the three categories of contract as "Contract", "Free" and "Loan"
+If the contract column contains "-" return "Contract"
+Else if if contract contains "free", return "Free"
+Else return "Loan"
+= Table.AddColumn(#"Replaced Value1", "Contract_type", each if Text.Contains([Contract], "-") then "Contract" else if [Contract] = "Free" then "Free" else "Loan")
+![image](https://github.com/TochukwuPhilip/FIFA_21_data_Cleaning/assets/108484860/4050bcf2-e09e-4ce4-803c-26ab2c2a8e1e)
+![image](https://github.com/TochukwuPhilip/FIFA_21_data_Cleaning/assets/108484860/4b94d043-b2fe-40f7-8499-7597c22f2952)
+
+
+
 
 
 
