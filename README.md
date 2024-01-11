@@ -80,6 +80,17 @@ Else return "Loan"
 ![image](https://github.com/TochukwuPhilip/FIFA_21_data_Cleaning/assets/108484860/4050bcf2-e09e-4ce4-803c-26ab2c2a8e1e)
 ![image](https://github.com/TochukwuPhilip/FIFA_21_data_Cleaning/assets/108484860/4b94d043-b2fe-40f7-8499-7597c22f2952)
 
+## Deriving the Contract Duration Column
+The contract duration column has been derived by splitting the Contract column into two and using custom column to find the difference between them
+![image](https://github.com/TochukwuPhilip/FIFA_21_data_Cleaning/assets/108484860/cfaa514e-1e24-48d6-8c03-e9b1bc1ff04a)
+
+![image](https://github.com/TochukwuPhilip/FIFA_21_data_Cleaning/assets/108484860/d8ef586c-a1c7-4095-b27e-cfd814f1e743)
+
+## Height and Weight Columns
+The Height and weight columns consist of inconsistent values.
+The height column has measurements in cm and feet while the Weight column has measurements in lb and kgs.
+The following formula has been used to convert ft to cm:
+
 
 
 
