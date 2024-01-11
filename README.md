@@ -90,6 +90,37 @@ The contract duration column has been derived by splitting the Contract column i
 The Height and weight columns consist of inconsistent values.
 The height column has measurements in cm and feet while the Weight column has measurements in lb and kgs.
 The following formula has been used to convert ft to cm:
+New_height = 
+    Table.AddColumn(
+        Table.SelectRows(#"PreviousStep", each not Text.Contains([Height], "cm")),
+        "New_height", 
+        each Number.From(
+            Text.Start(
+                [Height], 
+                Text.PositionOf([Height], "'") - 1
+            )
+        ) * 30.48 + Number.From(
+            Text.Range(
+                [Height], 
+                Text.PositionOf([Height], "'") + 1, 
+                Text.PositionOf([Height], """") - Text.PositionOf([Height], "'") - 1
+            )
+        ) * 2.54
+    )
+New_weight = Table.AddColumn(#"PreviousStep", "New_weight", each
+    if Text.Contains([weight], "kg") then
+        Number.From(Text.Start([weight], Text.PositionOf([weight], "kg") - 1)) * 2 - 20
+    else
+        Number.From(Text.Start([weight], Text.PositionOf([weight], "lbs") - 1))
+)
+![image](https://github.com/TochukwuPhilip/FIFA_21_data_Cleaning/assets/108484860/2a8caba4-7193-4065-a24d-c34a05b924a9)
+
+## Value, Wage and Release Clause Column
+![image](https://github.com/TochukwuPhilip/FIFA_21_data_Cleaning/assets/108484860/a1a3ba2c-cf26-4185-9162-89b0b3c8dcaa)
+These columns were written in thousand (K) and millions(M) and have the euro sign in every cell.The prefixes and suffixes have been removed. Where M is for millions, ‘K’ for thousands and ‘€’ for euro.
+A custom column was created to multiply the values with ‘K’ by 1000 and values with ‘M’ by 1000000.
+The formula below has been used to achieve this =IF Text.Contains([value],”M”) then Number.From(Text.beforeDelimiter([value],”M”))*1000000 else Number.From(Text.BeforeDelimiter([value],”K”))*1000) The data type was converted to a whole number, and the column remained.
+
 
 
 
