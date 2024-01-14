@@ -5,6 +5,7 @@
 # Introduction
 
 Data cleaning is the process of fixing or removing incorrect, corrupted, incorrectly formatted, duplicate, or incomplete data within a dataset.
+
 ![image](https://github.com/TochukwuPhilip/FIFA_21_data_Cleaning/assets/108484860/56bebc02-f85e-49e6-8316-593b094ca4ca)
 
 This project is a data cleaning task that is used to demontrate my ability to clean a dataset using the Power BI's Power Query. 
@@ -67,9 +68,13 @@ I have used the "Replace values" function to correct the irregularity.
 ## Contract and Position columns
 ![image](https://github.com/TochukwuPhilip/FIFA_21_data_Cleaning/assets/108484860/cffd9081-2f80-4cc3-8548-c703c9fcb498)
 
-Ontract column: Filtering the column shows that the column contains inconsistent data as follows:![image](https://github.com/TochukwuPhilip/FIFA_21_data_Cleaning/assets/108484860/9aebbb54-8bf9-4685-8384-c6bb2af2e823)
+Ontract column: Filtering the column shows that the column contains inconsistent data as follows:
+
+![image](https://github.com/TochukwuPhilip/FIFA_21_data_Cleaning/assets/108484860/9aebbb54-8bf9-4685-8384-c6bb2af2e823)
+
 The contract column values show three categories of data, a year range (e.g, 2020 ~ 2024), "free" and "... loan" types.
 First, I used the "replace value" function to change the "~" character to "-".
+
 ![image](https://github.com/TochukwuPhilip/FIFA_21_data_Cleaning/assets/108484860/24e53834-1658-42fd-9e4d-31834fa1b3c6)
 
 Second, I created a conditional column to identify the three categories of contract as "Contract", "Free" and "Loan"
@@ -77,11 +82,14 @@ If the contract column contains "-" return "Contract"
 Else if if contract contains "free", return "Free"
 Else return "Loan"
 = Table.AddColumn(#"Replaced Value1", "Contract_type", each if Text.Contains([Contract], "-") then "Contract" else if [Contract] = "Free" then "Free" else "Loan")
+
 ![image](https://github.com/TochukwuPhilip/FIFA_21_data_Cleaning/assets/108484860/4050bcf2-e09e-4ce4-803c-26ab2c2a8e1e)
+
 ![image](https://github.com/TochukwuPhilip/FIFA_21_data_Cleaning/assets/108484860/4b94d043-b2fe-40f7-8499-7597c22f2952)
 
 ## Deriving the Contract Duration Column
 The contract duration column has been derived by splitting the Contract column into two and using custom column to find the difference between them
+
 ![image](https://github.com/TochukwuPhilip/FIFA_21_data_Cleaning/assets/108484860/cfaa514e-1e24-48d6-8c03-e9b1bc1ff04a)
 
 ![image](https://github.com/TochukwuPhilip/FIFA_21_data_Cleaning/assets/108484860/d8ef586c-a1c7-4095-b27e-cfd814f1e743)
@@ -116,10 +124,28 @@ New_weight = Table.AddColumn(#"PreviousStep", "New_weight", each
 ![image](https://github.com/TochukwuPhilip/FIFA_21_data_Cleaning/assets/108484860/2a8caba4-7193-4065-a24d-c34a05b924a9)
 
 ## Value, Wage and Release Clause Column
+
 ![image](https://github.com/TochukwuPhilip/FIFA_21_data_Cleaning/assets/108484860/a1a3ba2c-cf26-4185-9162-89b0b3c8dcaa)
+
 These columns were written in thousand (K) and millions(M) and have the euro sign in every cell.The prefixes and suffixes have been removed. Where M is for millions, ‘K’ for thousands and ‘€’ for euro.
-A custom column was created to multiply the values with ‘K’ by 1000 and values with ‘M’ by 1000000.
-The formula below has been used to achieve this =IF Text.Contains([value],”M”) then Number.From(Text.beforeDelimiter([value],”M”))*1000000 else Number.From(Text.BeforeDelimiter([value],”K”))*1000) The data type was converted to a whole number, and the column remained.
+A conditional column "value by K or M" was created to multiply the values with ‘K’ by 1000 and values with ‘M’ by 1000000.
+Next, the "Value" column in is tripped of letters "M" and "K" while the column is converted to whole number data type.
+
+A custom column is created to find the product of the "value" column and the "value by K or M" column to find the "value_amt"
+![image](https://github.com/TochukwuPhilip/FIFA_21_data_Cleaning/assets/108484860/4403d3b8-cb2c-4b3b-b910-f6613634378e)
+
+These steps are repeated for "Wage" and "Release Clause" columns.
+
+## Other Columns
+The rest of the columns in the dataset have been observed for consistency, errors, empty cells, irregular/inconsistent formats, special characters and outliers.
+
+# Summary and Conclusion
+Data cleaning is a very important skill in the arsenal of the data practitioner. 
+The Power BI tool has been utilized during this task to wrangle or clean the data to make it ready for further analysis.
+
+Having carried out a thorough observation, identifying and rectifying Inaccuracies and Errors, Standardizing and Transforming Data,Handling Special Characters and Encoding Issues, Handling Inconsistent Formats,  the messy dataset is now clean and ready to be used for analysis.
+Carrying out this task has exposed me to real-life scenarios on how to handle messy data and prepare it for for analysis, as a messy and inconsistent data format can deter meaning ful analysis and lead to erroneous conclusions.
+
 
 
 
